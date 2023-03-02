@@ -1,21 +1,21 @@
-import { Suspense, lazy } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import Container from "../Container";
-import Header from "../Header";
-import Footer from "../Footer";
-import Loader from "../Loader/Loader";
+import Container from '../Container';
+import Header from '../Header';
+import Footer from '../Footer';
+import Loader from '../Loader/Loader';
 
 const HomeView = lazy(() =>
-  import("../../views/HomeView/HomeView" /* webpackChunkName: "HomeView" */)
+  import('../../views/HomeView/HomeView' /* webpackChunkName: "HomeView" */),
 );
 const RegisterView = lazy(() =>
   import(
-    "../../views/RegisterView/RegisterView" /* webpackChunkName: "RegisterView" */
-  )
+    '../../views/RegisterView/RegisterView' /* webpackChunkName: "RegisterView" */
+  ),
 );
 const LoginView = lazy(() =>
-  import("../../views/LoginView/LoginView" /* webpackChunkName: "LoginView" */)
+  import('../../views/LoginView/LoginView' /* webpackChunkName: "LoginView" */),
 );
 const App = () => {
   return (
@@ -25,11 +25,11 @@ const App = () => {
         <Suspense
           fallback={
             <Loader
-              ariaLabel={"ThreeDots"}
+              ariaLabel={'ThreeDots'}
               height={100}
               width={100}
               radius={5}
-              color={"#708db3"}
+              color={'#708db3'}
             />
           }
         >

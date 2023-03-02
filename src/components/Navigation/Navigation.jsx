@@ -1,19 +1,17 @@
-import React from "react";
-import { NavigationStyled, ListStyled, LinkStyled } from "./Navigation.styled";
+import React from 'react';
+import { useUserContext } from '../../context/userContext.js';
+import PublicNav from '../PublicNav';
+import AuthNav from '../AuthNav/AuthNav';
+import UserMenu from '../UserMenu';
+import { NavigationStyled, ListStyled } from './Navigation.styled';
 
 const Navigation = () => {
+  const { user } = useUserContext();
   return (
     <NavigationStyled>
       <ListStyled>
-        <LinkStyled aria-label={"/"} to={`/`}>
-          Home
-        </LinkStyled>
-        <LinkStyled aria-label={"login"} to={`/login`}>
-          Login
-        </LinkStyled>
-        <LinkStyled aria-label={"register"} to={`/register`}>
-          Register
-        </LinkStyled>
+        <PublicNav />
+        {user ? <UserMenu /> : <AuthNav />}
       </ListStyled>
     </NavigationStyled>
   );

@@ -1,7 +1,10 @@
-import { IconContext } from "react-icons";
-import { FaUserAlt } from "react-icons/fa";
-import { AiTwotoneMail } from "react-icons/ai";
-import { RiLockPasswordFill } from "react-icons/ri";
+import React, { useRef } from 'react';
+import { useUserContext } from '../../context/userContext.js';
+import { useNavigate } from 'react-router-dom';
+import { IconContext } from 'react-icons';
+import { FaUserAlt } from 'react-icons/fa';
+import { AiTwotoneMail } from 'react-icons/ai';
+import { RiLockPasswordFill } from 'react-icons/ri';
 
 import {
   MainStyled,
@@ -13,19 +16,44 @@ import {
   iconStyle,
   InputContainer,
   button,
-} from "./RegisterView.styled";
-import Button from "../../components/Button";
+} from './RegisterView.styled';
+import Button from '../../components/Button';
 
 export default function RegisterView() {
+  const emailRef = useRef();
+  const nameRef = useRef();
+  const psdRef = useRef();
+  const { registerUser, signInWithGoogle } = useUserContext();
+  const navigate = useNavigate();
+
+  const onSubmit = e => {
+    e.preventDefault();
+    const email = emailRef.current.value;
+    const name = nameRef.current.value;
+    const password = psdRef.current.value;
+    if (email && password && name) registerUser(email, password, name);
+    navigate('/');
+  };
+  const submitWithGoogle = () => {
+    signInWithGoogle();
+    navigate('/');
+  };
+
   return (
     <MainStyled>
-      <Form autoComplete="off">
+      <Form onSubmit={onSubmit} autoComplete="off">
         <Label> Name</Label>
         <ItemContainer>
           <InputContainer>
-            <Input type="name" name="name" id="name" placeholder="" />
+            <Input
+              type="name"
+              name="name"
+              id="name"
+              ref={nameRef}
+              placeholder=""
+            />
             <IconContext.Provider
-              value={{ style: { ...iconStyle, position: "absolute" } }}
+              value={{ style: { ...iconStyle, position: 'absolute' } }}
             >
               <FaUserAlt />
             </IconContext.Provider>
@@ -38,10 +66,11 @@ export default function RegisterView() {
               type="email"
               name="email"
               id="email"
+              ref={emailRef}
               placeholder="example@mail.com"
             />
             <IconContext.Provider
-              value={{ style: { ...iconStyle, position: "absolute" } }}
+              value={{ style: { ...iconStyle, position: 'absolute' } }}
             >
               <AiTwotoneMail />
             </IconContext.Provider>
@@ -52,9 +81,9 @@ export default function RegisterView() {
         </Label>
         <ItemContainer>
           <InputContainer>
-            <Input type="password" name="password" id="password" />
+            <Input type="password" name="password" id="password" ref={psdRef} />
             <IconContext.Provider
-              value={{ style: { ...iconStyle, position: "absolute" } }}
+              value={{ style: { ...iconStyle, position: 'absolute' } }}
             >
               <RiLockPasswordFill />
             </IconContext.Provider>
@@ -64,6 +93,9 @@ export default function RegisterView() {
           Register
         </Button>
       </Form>
+      <Button onClick={submitWithGoogle} style={button}>
+        Submit with Google
+      </Button>
     </MainStyled>
   );
 }

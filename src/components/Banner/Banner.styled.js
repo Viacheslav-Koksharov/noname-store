@@ -13,8 +13,8 @@ const ContainerStyled = styled.div`
 const TextStyled = styled.p`
     margin: 0;
     color: white;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 18px;
+    font-weight: 700;
     text-align: center;
 `;
 

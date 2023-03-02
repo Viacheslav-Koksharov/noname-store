@@ -1,6 +1,15 @@
-import { IconContext } from "react-icons";
-import { AiTwotoneMail } from "react-icons/ai";
-import { RiLockPasswordFill } from "react-icons/ri";
+import React, { useRef } from 'react';
+import { useUserContext } from '../../context/userContext.js';
+import { useNavigate } from 'react-router-dom';
+// import { auth, googleProvider } from '../../config/firebase.js';
+// import {
+//   signInWithEmailAndPassword,
+//   signInWithPopup,
+//   signOut,
+// } from 'firebase/auth';
+import { IconContext } from 'react-icons';
+import { AiTwotoneMail } from 'react-icons/ai';
+import { RiLockPasswordFill } from 'react-icons/ri';
 
 import {
   MainStyled,
@@ -12,13 +21,32 @@ import {
   iconStyle,
   InputContainer,
   button,
-} from "./LoginView.styled";
-import Button from "../../components/Button";
+} from './LoginView.styled';
+import Button from '../../components/Button';
 
 export default function LoginView() {
+  const navigate = useNavigate();
+
+  const emailRef = useRef();
+  const psdRef = useRef();
+  const { signInUser, signInWithGoogle } = useUserContext();
+
+  const onSubmit = e => {
+    e.preventDefault();
+    const email = emailRef.current.value;
+    const password = psdRef.current.value;
+    if (email && password) signInUser(email, password);
+    navigate('/');
+  };
+
+  const submitWithGoogle = () => {
+    signInWithGoogle();
+    navigate('/');
+  };
+
   return (
     <MainStyled>
-      <Form autoComplete="off">
+      <Form onSubmit={onSubmit} autoComplete="off">
         <Label>Email</Label>
         <ItemContainer>
           <InputContainer>
@@ -26,10 +54,11 @@ export default function LoginView() {
               type="email"
               name="email"
               id="email"
+              ref={emailRef}
               placeholder="example@mail.com"
             />
             <IconContext.Provider
-              value={{ style: { ...iconStyle, position: "absolute" } }}
+              value={{ style: { ...iconStyle, position: 'absolute' } }}
             >
               <AiTwotoneMail />
             </IconContext.Provider>
@@ -40,9 +69,9 @@ export default function LoginView() {
         </Label>
         <ItemContainer>
           <InputContainer>
-            <Input type="password" name="password" id="password" />
+            <Input type="password" name="password" id="password" ref={psdRef} />
             <IconContext.Provider
-              value={{ style: { ...iconStyle, position: "absolute" } }}
+              value={{ style: { ...iconStyle, position: 'absolute' } }}
             >
               <RiLockPasswordFill />
             </IconContext.Provider>
@@ -52,6 +81,9 @@ export default function LoginView() {
           Login
         </Button>
       </Form>
+      <Button onClick={submitWithGoogle} style={button}>
+        Submit with Google
+      </Button>
     </MainStyled>
   );
 }
