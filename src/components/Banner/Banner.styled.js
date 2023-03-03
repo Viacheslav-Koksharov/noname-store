@@ -7,7 +7,7 @@ const ContainerStyled = styled.div`
     align-items: center;
     width: 100%;
     height: 35px;
-    background-image: linear-gradient(120deg,#a6c0fe,#f68084);
+    background-image: linear-gradient(120deg,#2f66e6,#50f45e);
 `;
 
 const TextStyled = styled.p`

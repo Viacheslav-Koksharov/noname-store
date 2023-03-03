@@ -1,12 +1,9 @@
-import { ContainerStyled, TextStyled } from "./Banner.styled";
+import { ContainerStyled, TextStyled } from './Banner.styled';
 
-const Banner = () => {
+const Banner = ({ text }) => {
   return (
     <ContainerStyled>
-      <TextStyled>
-        NEW! Gently Cooked Cat Food - Enjoy 15% OFF for any case purchased - Use
-        code: QWEQWEPOIUYT
-      </TextStyled>
+      <TextStyled>{text}</TextStyled>
     </ContainerStyled>
   );
 };

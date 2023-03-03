@@ -1,14 +1,16 @@
-import PropTypes from 'prop-types';
 import { ContainerStyled } from './Container.styled.js';
 
-const Container = ({ children }) => {
-    return (
-        <ContainerStyled>{children}</ContainerStyled>
-    )
-}
-
-Container.propTypes = {
-  children: PropTypes.node.isRequired,
+const Container = ({ children, main, background, carousel, flex }) => {
+  return (
+    <ContainerStyled
+      main={main}
+      background={background}
+      carousel={carousel}
+      flex={flex}
+    >
+      {children}
+    </ContainerStyled>
+  );
 };
 
-export default Container
+export default Container;

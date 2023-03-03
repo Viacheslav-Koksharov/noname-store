@@ -1,13 +1,44 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, useEffect, lazy } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useUserContext } from '../../context/userContext.js';
 import { Routes, Route } from 'react-router-dom';
-
+import { BasketProvider } from '../../context/BasketContextProvider';
+// import { fetchCurrentUser } from '../../redux/auth/auth-operations';
+import content from '../../mocks/data/footer-content.json';
+import tagline from '../../mocks/data/tagline.json';
+// import authSelectors from '../../redux/auth/auth-selectors';
+import Loader from '../Loader/Loader';
 import Container from '../Container';
+import ProductItem from '../ProductItem';
 import Header from '../Header';
 import Footer from '../Footer';
-import Loader from '../Loader/Loader';
+import Description from '../../views/DescriptionView/Description';
+import Params from '../../views/ParamsView/Params';
+import PrivateRoute from '../Routes/PrivateRoute';
+import PublicRoute from '../Routes/PublicRoute';
 
 const HomeView = lazy(() =>
   import('../../views/HomeView/HomeView' /* webpackChunkName: "HomeView" */),
+);
+const OffersView = lazy(() =>
+  import(
+    '../../views/OffersView/OffersView' /* webpackChunkName: "OffersView" */
+  ),
+);
+const CustomerServiceView = lazy(() =>
+  import(
+    '../../views/CustomerServiceView/CustomerService' /* webpackChunkName: "CustomerServiceView" */
+  ),
+);
+const PrivacyPolicyView = lazy(() =>
+  import(
+    '../../views/PrivacyPolicyView/PrivacyPolicyView' /* webpackChunkName: "PrivacyPolicyView" */
+  ),
+);
+const TermsAndConditionsView = lazy(() =>
+  import(
+    '../../views/TermsAndConditionsView/TermsAndConditions' /* webpackChunkName: "TermsAndConditionsView" */
+  ),
 );
 const RegisterView = lazy(() =>
   import(
@@ -17,10 +48,29 @@ const RegisterView = lazy(() =>
 const LoginView = lazy(() =>
   import('../../views/LoginView/LoginView' /* webpackChunkName: "LoginView" */),
 );
-const App = () => {
+const AccountView = lazy(() =>
+  import(
+    '../../views/AccountView/AccountView' /* webpackChunkName: "AccountView" */
+  ),
+);
+const CartView = lazy(() =>
+  import('../../views/CartView/CartView' /* webpackChunkName: "CartView" */),
+);
+
+export default function App() {
+  // const dispatch = useDispatch();
+  // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+  const { user } = useUserContext();
+
+  // useEffect(() => {
+  //   dispatch(fetchCurrentUser());
+  // }, [dispatch]);
+
   return (
-    <>
-      <Container>
+    <BasketProvider>
+      {/* {!user && ( */}
+      <Container main>
+        <Container background></Container>
         <Header />
         <Suspense
           fallback={
@@ -29,20 +79,69 @@ const App = () => {
               height={100}
               width={100}
               radius={5}
-              color={'#708db3'}
+              color={'#2f66e6'}
             />
           }
         >
           <Routes>
-            <Route path="/" element={<HomeView />} />
-            <Route path="/register" element={<RegisterView />} />
-            <Route path="/login" element={<LoginView />} />
+            <Route
+              path="/"
+              element={
+                <HomeView
+                  tagline={tagline.tagline}
+                  message={tagline.message}
+                  conditions={tagline.conditions}
+                />
+              }
+            />
+            <Route path="/offers" element={<OffersView />} />
+            <Route path="/offers/:offersId" element={<ProductItem />}>
+              <Route path="description" element={<Description />} />
+              <Route path="params" element={<Params />} />
+            </Route>
+            <Route path="/customer-service" element={<CustomerServiceView />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyView />} />
+            <Route
+              path="/terms-and-conditions"
+              element={<TermsAndConditionsView />}
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute redirectTo="/offers" restricted>
+                  <RegisterView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute redirectTo="/offers" restricted>
+                  <LoginView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/account"
+              element={
+                <PrivateRoute redirectTo="/">
+                  <AccountView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <PrivateRoute redirectTo="/login">
+                  <CartView />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </Suspense>
+        <Footer content={content} />
       </Container>
-      <Footer />
-    </>
+      {/* )} */}
+    </BasketProvider>
   );
-};
-
-export default App;
+}

@@ -1,11 +1,18 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { breakpoints } from "../../helpers/variables";
+
+const { main } = breakpoints;
 
 const FooterStyled = styled.footer`
-    padding: 20px;
+    padding: 10px;
     margin: 0;
     background-color: white;
     border-top: 1px solid #708db3;
+
+@media screen and (min-width: ${main.tablet}px){
+    padding: 20px;
+}
 `;
 
 const TitleStyled = styled.p`
@@ -15,17 +22,17 @@ const TitleStyled = styled.p`
     font-weight: 500;
     text-transform: uppercase;
 `;
-const Container = styled.div`
-display: flex;
-  justify-content: space-between;
-  align-items:center;
-`;
+
 const ListStyled = styled.ul`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-left:10px;
-    width: 350px;`;
+    margin-left:${(props) => (props.staticLinks ? "10px" : "0")};
+    width: ${(props) => (props.staticLinks ? "200px" : "200px")};}
+
+@media screen and (min-width: ${main.tablet}px) {
+    width: ${(props) => (props.staticLinks ? "350px" : "200px")};}
+`;
 
 const ItemStyled = styled.li``;
 
@@ -57,4 +64,4 @@ const TextStyled = styled.p`
     font-weight: 500;
 `;
 
-export { FooterStyled, TitleStyled, Container, ListStyled, ItemStyled, LinkStyled, StaticLinkStyled, TextStyled };
+export { FooterStyled, TitleStyled, ListStyled, ItemStyled, LinkStyled, StaticLinkStyled, TextStyled };

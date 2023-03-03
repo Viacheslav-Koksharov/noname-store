@@ -8,20 +8,21 @@ import {
 import {
   FooterStyled,
   TitleStyled,
-  Container,
   ListStyled,
   ItemStyled,
   LinkStyled,
   StaticLinkStyled,
   TextStyled,
 } from "./Footer.styled";
+import staticLinks from "../../mocks/data/static-links.json";
+import Container from "../Container";
 import "../../index.css";
 
-const Footer = () => {
+const Footer = ({ content }) => {
   return (
     <FooterStyled>
-      <TitleStyled>FOLLOW US</TitleStyled>
-      <Container>
+      <TitleStyled>{content.title}</TitleStyled>
+      <Container flex>
         <ListStyled>
           <ItemStyled key="facebook">
             <LinkStyled
@@ -70,14 +71,19 @@ const Footer = () => {
           </ItemStyled>
         </ListStyled>
         <ListStyled staticLinks>
-          <ItemStyled>
-            <StaticLinkStyled to={`/`}>customer service</StaticLinkStyled>
-            <StaticLinkStyled to={`/`}>privacy policy</StaticLinkStyled>
-            <StaticLinkStyled to={`/`}>terms and conditions</StaticLinkStyled>
-          </ItemStyled>
+          {staticLinks.map((link) => (
+            <ItemStyled key={link}>
+              <StaticLinkStyled
+                aria-label={link}
+                to={`/${link.replace(/ /g, "-")}`}
+              >
+                {link}
+              </StaticLinkStyled>
+            </ItemStyled>
+          ))}
         </ListStyled>
       </Container>
-      <TextStyled>QQQQQQQQQQQ</TextStyled>
+      <TextStyled>{content.text}</TextStyled>
     </FooterStyled>
   );
 };
