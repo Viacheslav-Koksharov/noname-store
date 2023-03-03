@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import { useUserContext } from '../../context/userContext.js';
-// import { useSelector } from "react-redux";
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import {
   MainStyled,
@@ -17,7 +16,6 @@ import {
 } from './ProductItem.styled';
 import products from '../../mocks/data/products.json';
 import { BasketContext } from '../../context/BasketContextProvider';
-// import authSelectors from "../../redux/auth/auth-selectors";
 import Button from '../Button/Button';
 import CustomModal from '../CustomModal';
 
@@ -27,8 +25,7 @@ const getInitialBasketState = () => {
 };
 
 const ProductItem = () => {
-  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  const { loading } = useUserContext();
+  const { user } = useUserContext();
   const [product, setProduct] = useState();
   const [items, setItems] = useState(getInitialBasketState);
   const { setBasketItems } = useContext(BasketContext);
@@ -53,9 +50,8 @@ const ProductItem = () => {
   }, [offersId]);
 
   function handleSubmit() {
-    if (loading) {
+    if (user) {
       const itemIndex = items.findIndex(({ id }) => id === offersId);
-
       const item = product;
       if (itemIndex < 0) {
         if (item) {
@@ -94,7 +90,7 @@ const ProductItem = () => {
             >
               add to cart
             </Button>
-            {!loading && (
+            {!user && (
               <AlertStyle>
                 You can't add this product to the cart.
                 <br />

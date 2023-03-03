@@ -33,6 +33,7 @@ export const UserContextProvider = ({ children }) => {
         });
     }, [user]);
 
+
     const registerUser = (email, password, name) => {
         setLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
@@ -43,7 +44,7 @@ export const UserContextProvider = ({ children }) => {
                 setUser(name)
             }
             )
-            .then(() => setLoading(false))
+            .then((res) => console.log(res))
             .catch((err) => setError(err.message))
             .finally(() => setLoading(false));
     };

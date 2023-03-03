@@ -1,6 +1,5 @@
-import { useEffect, useContext } from "react";
-
-import { RiDeleteBin6Line } from "react-icons/ri";
+import { useEffect, useContext } from 'react';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import {
   ListStyled,
   ItemStyled,
@@ -10,26 +9,26 @@ import {
   ValueStyled,
   ButtonStyled,
   TotalStyled,
-} from "./Cart.styled";
-import { BasketContext } from "../../context/BasketContextProvider";
-import { getTotal } from "../../helpers/getTotal";
-import Counter from "../Counter";
-import "../../index.css";
+} from './Cart.styled';
+import { BasketContext } from '../../context/BasketContextProvider';
+import { getTotal } from '../../helpers/getTotal';
+import Counter from '../Counter';
+import '../../index.css';
 
 const Cart = ({ main }) => {
   const { basketItems, setBasketItems } = useContext(BasketContext);
 
   useEffect(() => {
-    localStorage.setItem("basket", JSON.stringify(basketItems));
+    localStorage.setItem('basket', JSON.stringify(basketItems));
   }, [basketItems]);
 
-  const getQuantity = (id) => {
-    const item = basketItems.find((item) => item.id === id);
+  const getQuantity = id => {
+    const item = basketItems.find(item => item.id === id);
     return item?.quantity;
   };
 
-  const deleteItem = (id) => {
-    const updatedBasketItems = basketItems.filter((item) => item.id !== id);
+  const deleteItem = id => {
+    const updatedBasketItems = basketItems.filter(item => item.id !== id);
     setBasketItems(updatedBasketItems);
   };
 

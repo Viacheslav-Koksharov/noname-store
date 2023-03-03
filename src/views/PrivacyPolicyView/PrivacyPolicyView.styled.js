@@ -1,29 +1,15 @@
 import styled from "styled-components";
-import { breakpoints } from "../../helpers/variables";
-
-const { main } = breakpoints;
 
 const MainStyled = styled.main`
- display: block;
-  width: 100%;
-  padding:5px;
-  background-color: white;
-
-@media screen and (min-width: ${main.tablet}px){
   display: flex;
+  width: 100%;
   padding:20px;
-}
-
+  background-color: white;
 `;
 
 const SectionStyled = styled.section`
-  width: 100%;
-  padding: 5px;
-
-@media screen and (min-width: ${main.tablet}px){
   width: 70%;
   padding: 40px;
-}
 `;
 
 const ListStyled = styled.ul`
@@ -31,23 +17,14 @@ const ListStyled = styled.ul`
 `;
 
 const ItemStyled = styled.li`
-  margin-bottom: 0;
+  margin-bottom: 20px;
   list-style: none;
-
-  &:not(:last-child) {
-    margin-bottom: 20px;
-  }
 `;
 
 const TextStyled = styled.p`
   display: inline-block;
-  font-size:12px;
-  line-height: 1;
-
-@media screen and (min-width: ${main.tablet}px){
   font-size:22px;
   line-height: 2;
-}
 `;
 
 const iconStyle = {

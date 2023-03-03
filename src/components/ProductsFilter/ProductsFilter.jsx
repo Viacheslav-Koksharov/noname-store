@@ -60,7 +60,7 @@ const ProductsFilter = () => {
               ))}
               <ItemFilterStyled>
                 <Button id="all" style={button} onClick={onButtonClick}>
-                  all products
+                  All products
                 </Button>
               </ItemFilterStyled>
             </>

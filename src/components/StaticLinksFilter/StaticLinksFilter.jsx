@@ -23,7 +23,7 @@ const StaticLinksFilter = () => {
       </ListStyled>
       <ContainerImage>
         <Container>
-          <img src={ImageFAQ} alt="pets" />
+          <img src={ImageFAQ} alt="digit" />
         </Container>
       </ContainerImage>
     </ContainerStyled>

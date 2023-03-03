@@ -1,12 +1,6 @@
 import React, { useRef } from 'react';
 import { useUserContext } from '../../context/userContext.js';
 import { useNavigate } from 'react-router-dom';
-// import { auth, googleProvider } from '../../config/firebase.js';
-// import {
-//   signInWithEmailAndPassword,
-//   signInWithPopup,
-//   signOut,
-// } from 'firebase/auth';
 import { IconContext } from 'react-icons';
 import { AiTwotoneMail } from 'react-icons/ai';
 import { RiLockPasswordFill } from 'react-icons/ri';
@@ -21,6 +15,7 @@ import {
   iconStyle,
   InputContainer,
   button,
+  buttonGoogle,
 } from './LoginView.styled';
 import Button from '../../components/Button';
 
@@ -36,12 +31,12 @@ export default function LoginView() {
     const email = emailRef.current.value;
     const password = psdRef.current.value;
     if (email && password) signInUser(email, password);
-    navigate('/');
+    navigate('/offers');
   };
 
   const submitWithGoogle = () => {
     signInWithGoogle();
-    navigate('/');
+    navigate('/offers');
   };
 
   return (
@@ -81,8 +76,8 @@ export default function LoginView() {
           Login
         </Button>
       </Form>
-      <Button onClick={submitWithGoogle} style={button}>
-        Submit with Google
+      <Button onClick={submitWithGoogle} style={buttonGoogle}>
+        Log with Google
       </Button>
     </MainStyled>
   );

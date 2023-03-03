@@ -4,33 +4,20 @@ import { breakpoints } from "../../helpers/variables";
 const { main } = breakpoints;
 
 const MainStyled = styled.main`
-  display: block;
-  width: 100%;
-  padding:5px;
-  background-color: white;
-
-@media screen and (min-width: ${main.tablet}px){
   display: flex;
-  padding:20px;
-}
+  width: 100%;
+  padding: 20px;
+  background-color: white;
 `;
 
 const SectionStyled = styled.section`
-  width: 100%;
-  padding: 5px;
-
-@media screen and (min-width: ${main.tablet}px){
   width: 70%;
   padding: 40px;
-}
 `;
 
 const TitleStyled = styled.h2`
- font-size:22px;
-  margin-top: 0;
-@media screen and (min-width: ${main.tablet}px){
   font-size:26px;
-}
+  margin-top: 0;
 `;
 
 const ListStyled = styled.ol`
@@ -47,6 +34,9 @@ const ItemStyled = styled.li`
   }
 
   &:before {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
     counter-increment: customCounter;
     content:counter(customCounter);
     margin-right: 10px;
@@ -55,25 +45,12 @@ const ItemStyled = styled.li`
     background: #2f66e6;
     line-height: 40px;
   }
-
-  @media screen and (min-width: ${main.tablet}px){
-    &:before {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-    }
-}
 `;
 
 const TextStyled = styled.p`
   display: inline;
-  font-size:12px;
-  line-height: 1;
-
-@media screen and (min-width: ${main.tablet}px){
   font-size:22px;
   line-height: 2;
-}
 `;
 
 export { MainStyled, SectionStyled, TitleStyled, ListStyled, ItemStyled, TextStyled };

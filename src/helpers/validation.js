@@ -1,6 +1,5 @@
 import { patterns } from '../mocks/data/validation-patterns';
 
-
 const validate = (
     e,
     setName,

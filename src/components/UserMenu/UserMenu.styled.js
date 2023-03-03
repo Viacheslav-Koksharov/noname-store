@@ -87,5 +87,4 @@ const ItemsCounter = styled.small`
   font-weight: 400;
 `;
 
-
 export { NavigationStyled, LinkStyled, ButtonAccount, ButtonCart, Text, LogOutButton, ContainerCounter, ItemsCounter };

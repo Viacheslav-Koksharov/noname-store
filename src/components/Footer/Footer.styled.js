@@ -28,10 +28,7 @@ const ListStyled = styled.ul`
     justify-content: space-between;
     flex-wrap: wrap;
     margin-left:${(props) => (props.staticLinks ? "10px" : "0")};
-    width: ${(props) => (props.staticLinks ? "200px" : "200px")};}
-
-@media screen and (min-width: ${main.tablet}px) {
-    width: ${(props) => (props.staticLinks ? "350px" : "200px")};}
+    width: ${(props) => (props.staticLinks ? "350px" : "200px")};
 `;
 
 const ItemStyled = styled.li``;

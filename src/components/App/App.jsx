@@ -1,12 +1,8 @@
-import { Suspense, useEffect, lazy } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-import { useUserContext } from '../../context/userContext.js';
+import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { BasketProvider } from '../../context/BasketContextProvider';
-// import { fetchCurrentUser } from '../../redux/auth/auth-operations';
 import content from '../../mocks/data/footer-content.json';
 import tagline from '../../mocks/data/tagline.json';
-// import authSelectors from '../../redux/auth/auth-selectors';
 import Loader from '../Loader/Loader';
 import Container from '../Container';
 import ProductItem from '../ProductItem';
@@ -14,7 +10,6 @@ import Header from '../Header';
 import Footer from '../Footer';
 import Description from '../../views/DescriptionView/Description';
 import Params from '../../views/ParamsView/Params';
-import PrivateRoute from '../Routes/PrivateRoute';
 import PublicRoute from '../Routes/PublicRoute';
 
 const HomeView = lazy(() =>
@@ -48,27 +43,10 @@ const RegisterView = lazy(() =>
 const LoginView = lazy(() =>
   import('../../views/LoginView/LoginView' /* webpackChunkName: "LoginView" */),
 );
-const AccountView = lazy(() =>
-  import(
-    '../../views/AccountView/AccountView' /* webpackChunkName: "AccountView" */
-  ),
-);
-const CartView = lazy(() =>
-  import('../../views/CartView/CartView' /* webpackChunkName: "CartView" */),
-);
 
 export default function App() {
-  // const dispatch = useDispatch();
-  // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-  const { user } = useUserContext();
-
-  // useEffect(() => {
-  //   dispatch(fetchCurrentUser());
-  // }, [dispatch]);
-
   return (
     <BasketProvider>
-      {/* {!user && ( */}
       <Container main>
         <Container background></Container>
         <Header />
@@ -121,27 +99,10 @@ export default function App() {
                 </PublicRoute>
               }
             />
-            <Route
-              path="/account"
-              element={
-                <PrivateRoute redirectTo="/">
-                  <AccountView />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/cart"
-              element={
-                <PrivateRoute redirectTo="/login">
-                  <CartView />
-                </PrivateRoute>
-              }
-            />
           </Routes>
         </Suspense>
         <Footer content={content} />
       </Container>
-      {/* )} */}
     </BasketProvider>
   );
 }

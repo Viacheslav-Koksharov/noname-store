@@ -1,8 +1,19 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { breakpoints } from "../../helpers/variables";
 
-const { main } = breakpoints;
+const ListContainer = styled.div`
+    width: 70%;
+    height: 100%;
+    padding: 20px 40px 40px 40px;
+    margin:10px 0 0 0;
+`;
+
+const InputRadio = styled.input`
+    margin: 0 10px 0 20px;
+    font-size: 20px;
+    font-weight: 500;
+
+`;
 
 const ListStyled = styled.ul`
     display: flex;
@@ -10,32 +21,12 @@ const ListStyled = styled.ul`
     width: 100%;
     height: 100%;
     padding: 0;
-    margin:10px 0 0 0 ;
-@media screen and (min-width: ${main.tablet}px){
-    width: 70%;
-    height: 100%;
-    padding: 40px;}
+    margin:20px 0 0 00 ;
+
 `;
 
 const ItemStyled = styled.li`
- width: calc((100% - 10px) /2);
-    height: calc((100% - 10px) / 2);
-    margin: 0 5px 5px 0;
-
-    &:nth-child(3n) {
-        margin-right: 0;
-    }
-
-    &:nth-last-child(-n + 2) {
-        margin-bottom: 0;
-    }
-
-box-shadow: 0 1px 1px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
-:hover {
-        transform: scale(1.005);
-    }
-@media screen and (min-width: ${main.tablet}px){
-    width: calc((100% - 80px) / 3);
+   width: calc((100% - 80px) / 3);
     height: calc((100% - 80px) / 3);
     margin: 0 40px 40px 0;
 
@@ -46,7 +37,12 @@ box-shadow: 0 1px 1px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px
     &:nth-last-child(-n + 3) {
         margin-bottom: 0;
     }
-}
+
+box-shadow: 0 1px 1px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
+:hover {
+        transform: scale(1.005);
+    }
+
 `;
 
 const LinkStyled = styled(Link)`
@@ -54,21 +50,13 @@ const LinkStyled = styled(Link)`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 5px;}
-
-@media screen and (min-width: ${main.tablet}px){
     padding: 30px;}
 `;
 
 const ImageContainerStyled = styled.div`
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
-
-@media screen and (min-width: ${main.tablet}px){
     width: 200px;
     height: 200px;
-    margin-bottom: 20px;}
+    margin-bottom: 20px;
 `;
 
 const TextStyled = styled.p`
@@ -89,4 +77,4 @@ const button = {
     'backgroundColor': '#2f66e6',
 }
 
-export { ListStyled, ItemStyled, LinkStyled, ImageContainerStyled, TextStyled, button };
+export { ListContainer, InputRadio, ListStyled, ItemStyled, LinkStyled, ImageContainerStyled, TextStyled, button };

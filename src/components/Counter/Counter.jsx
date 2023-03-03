@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 import {
   CounterContainer,
   CounterValue,
   ButtonCounter,
   LegendStyle,
-} from "./Counter.styled";
-import { BasketContext } from "../../context/BasketContextProvider";
+} from './Counter.styled';
+import { BasketContext } from '../../context/BasketContextProvider';
 
 const Counter = ({ step = 1, id, value }) => {
   const { basketItems, setBasketItems } = useContext(BasketContext);
 
   function increment(e) {
-    const updatedBasket = basketItems.map((item) => {
+    const updatedBasket = basketItems.map(item => {
       if (item.id === e.currentTarget.id) {
         item.quantity += step;
       }
@@ -21,7 +21,7 @@ const Counter = ({ step = 1, id, value }) => {
   }
 
   function decrement(e) {
-    const updatedBasket = basketItems.map((item) => {
+    const updatedBasket = basketItems.map(item => {
       if (item.id === e.currentTarget.id && item.quantity > 1) {
         item.quantity -= step;
       }

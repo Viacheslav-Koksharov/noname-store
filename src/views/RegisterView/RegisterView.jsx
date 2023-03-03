@@ -16,6 +16,7 @@ import {
   iconStyle,
   InputContainer,
   button,
+  buttonGoogle,
 } from './RegisterView.styled';
 import Button from '../../components/Button';
 
@@ -32,11 +33,11 @@ export default function RegisterView() {
     const name = nameRef.current.value;
     const password = psdRef.current.value;
     if (email && password && name) registerUser(email, password, name);
-    navigate('/');
+    navigate('/offers');
   };
   const submitWithGoogle = () => {
     signInWithGoogle();
-    navigate('/');
+    navigate('/offers');
   };
 
   return (
@@ -93,8 +94,8 @@ export default function RegisterView() {
           Register
         </Button>
       </Form>
-      <Button onClick={submitWithGoogle} style={button}>
-        Submit with Google
+      <Button onClick={submitWithGoogle} style={buttonGoogle}>
+        Reg with Google
       </Button>
     </MainStyled>
   );

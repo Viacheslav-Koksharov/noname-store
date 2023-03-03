@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 const ContainerStyled = styled.div`
   position: ${(props) => (props.background ? "fixed" : "static")};
   top: ${(props) => (props.background ? "140px" : "0")};

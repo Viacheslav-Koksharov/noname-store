@@ -1,27 +1,20 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { breakpoints } from "../../helpers/variables";
-
-const { main } = breakpoints;
 
 const MainStyled = styled.main`
   width: 100%;
-  padding:10px;
-  background-color: white;
-
-@media screen and (min-width: ${main.tablet}px){
   padding:20px;
- }
+  background-color: white;
 `;
 
 const GoBackButton = styled.button`
-  width: 90px;
-  height: 30px;
-  margin-bottom: 15px;
-  padding: 5px;
+  width: 120px;
+  height: 40px;
+  margin-bottom: 25px;
+  padding: 10px;
   color: white;
   background-color: #a0bbfa;
-  font-size: 12px;
+  font-size: 15px;
   text-align: center;
   border: none;
   outline: none;
@@ -29,14 +22,6 @@ const GoBackButton = styled.button`
   &:hover {
     transform: scale(1.05);
   }
-
-@media screen and (min-width: ${main.tablet}px){
-  width: 120px;
-  height: 40px;
-  margin-bottom: 25px;
-  padding: 10px;
-  font-size: 15px;
-}
 `;
 
 const ProductContainer = styled.div`
@@ -55,36 +40,22 @@ const TextContainerStyled = styled.div`
 `;
 
 const TitleStyled = styled.p`
-  margin: 0 0 10px 0;
-  font-size: 18px;
-  font-weight: bold;
-@media screen and (min-width: ${main.tablet}px){
   margin: 0 0 30px 0;
   font-size: 32px;
- }
+  font-weight: bold;
 `;
 
 const AlertStyle = styled.p`
-margin: 0 0 10px 0;
+margin: 0 0 30px 0;
   color:red;
-  font-size: 12px;
-  font-weight: 400;
-
-@media screen and (min-width: ${main.tablet}px){
-  margin: 0 0 30px 0;
   font-size: 15px;
-  font-weight: 500;}
+  font-weight: 500;
 `;
 
 const BrandStyle = styled.p`
-margin: 0 0 10px 0;
-  font-size: 16px;
-  font-weight: bold;
-
-@media screen and (min-width: ${main.tablet}px){
-  margin: 0 0 30px 0;
+margin: 0 0 30px 0;
   font-size: 26px;
-  }
+  font-weight: bold;
 `;
 
 const List = styled.ul`
@@ -99,8 +70,8 @@ const LinkItem = styled(Link)`
 display: inline-block;
   padding: 10px;
   color: #708db3;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 700;
   text-decoration: none;
 
   &.active {
@@ -111,11 +82,6 @@ display: inline-block;
   :hover {
     transform: scale(1.1);
   }
-@media screen and (min-width: ${main.tablet}px){
-  padding: 10px;
-  font-size: 18px;
-  font-weight: 700;
-}
 `;
 
 const button = {

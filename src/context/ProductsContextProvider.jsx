@@ -1,9 +1,6 @@
-import { useState, createContext } from "react";
+import { useState, createContext } from 'react';
 
-const ProductsContext = createContext({
-  filteredProducts: [],
-  setFilteredProducts: () => {},
-});
+const ProductsContext = createContext();
 
 const ProductsProvider = ({ children }) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
