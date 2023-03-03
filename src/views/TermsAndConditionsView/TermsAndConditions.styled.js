@@ -1,7 +1,4 @@
 import styled from "styled-components";
-import { breakpoints } from "../../helpers/variables";
-
-const { main } = breakpoints;
 
 const MainStyled = styled.main`
   display: flex;
